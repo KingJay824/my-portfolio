@@ -1,0 +1,49 @@
+/* About.css */
+.about-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 80px 20px;
+  text-align: center;
+  color: #0e0e0e;
+}
+
+.about-container img {
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 20px;
+  border: 3px solid #00bfff;
+}
+
+.about-container h1 {
+  font-size: 2.5rem;
+  color: #00bfff;
+  margin-bottom: 15px;
+}
+
+.about-container p {
+  font-size: 1.2rem;
+  max-width: 600px;
+  margin-bottom: 25px;
+}
+
+.about-container a {
+  text-decoration: none;
+}
+
+.resume-button {
+  padding: 10px 25px;
+  background-color: #00bfff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+.resume-button:hover {
+  background-color: #0095d1;
+  transform: scale(1.05);
+}
