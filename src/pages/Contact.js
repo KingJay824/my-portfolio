@@ -13,7 +13,9 @@ const Contact = () => {
 
   const [status, setStatus] = useState(""); // To show success or error
 
-  const API_URL = "http://localhost:5000/api/contacts";
+
+const API_URL = "https://portfolio-backend-waqb.onrender.com/api/contacts";
+
 
   const handleChange = (e) => {
     const { name, value } = e.target;
