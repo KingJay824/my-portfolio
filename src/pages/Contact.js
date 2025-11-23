@@ -1,57 +1,68 @@
 import React, { useState } from "react";
+import axios from "axios";
 import "./Contact.css";
 
 const Contact = () => {
   const [formData, setFormData] = useState({
-    firstName: "",
-    lastName: "",
+    firstname: "",
+    lastname: "",
     contactNumber: "",
     email: "",
     message: "",
   });
 
-  // Handle input change
+  const [status, setStatus] = useState(""); // To show success or error
+
+  const API_URL = "http://localhost:5000/api/contacts";
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
 
-  // Handle form submit
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Form Data Submitted:", formData);
-
-    // redirect back to home page
-    window.location.href = "/";
+    try {
+      await axios.post(API_URL, formData);
+      setFormData({
+        firstname: "",
+        lastname: "",
+        contactNumber: "",
+        email: "",
+        message: "",
+      });
+      setStatus("Message sent successfully!");
+    } catch (err) {
+      console.error(err);
+      setStatus("Failed to send message. Try again.");
+    }
   };
 
   return (
     <div className="contact-container">
       <h1>Contact Me</h1>
 
-      {/* Contact Information Panel */}
       <div className="contact-info">
         <p><strong>Email:</strong> olamilekanjohnson13@gmail.com</p>
         <p><strong>Phone:</strong> +1 (647) 473-1060</p>
         <p><strong>Location:</strong> Toronto, Canada</p>
       </div>
 
-      {/* Contact Form */}
       <form className="contact-form" onSubmit={handleSubmit}>
         <div className="form-group">
           <input
             type="text"
-            name="firstName"
+            name="firstname"
             placeholder="First Name"
-            value={formData.firstName}
+            value={formData.firstname}
             onChange={handleChange}
             required
           />
           <input
             type="text"
-            name="lastName"
+            name="lastname"
             placeholder="Last Name"
-            value={formData.lastName}
+            value={formData.lastname}
             onChange={handleChange}
             required
           />
@@ -86,6 +97,8 @@ const Contact = () => {
 
         <button type="submit">Send Message</button>
       </form>
+
+      {status && <p className="status-message">{status}</p>}
     </div>
   );
 };
